@@ -1,10 +1,21 @@
-import adapter from '@sveltejs/adapter-auto';
+import adapter from '@sveltejs/adapter-static'; // was adapter-auto
+
+const dev = "production" === "development";
 
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
 	kit: {
-		adapter: adapter()
+		adapter: adapter({
+			pages: 'docs',
+			assets: 'docs'
+		}),
+		paths: {
+			base: dev ? '' : '/escola.aaa',
+		}//,
+		// hydrate the <div id="svelte"> element in src/app.html
+		//target: '#svelte'
 	}
 };
+
 
 export default config;
